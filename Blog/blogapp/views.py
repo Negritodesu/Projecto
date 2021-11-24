@@ -27,6 +27,8 @@ def cuestionario(request):
         l2 = [x] + linea.strip().split(',')
         l.append(l2)
         x += 1
+    if request.method == 'POST':
+        request.POST.get('name')
 
     
     return render(request, 'cuestionario.html', {'preguntas' : l})
