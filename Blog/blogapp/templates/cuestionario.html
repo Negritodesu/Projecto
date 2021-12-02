@@ -42,13 +42,21 @@
           {% for pregunta in preguntas %}
         
             <div class="col-12">
-                {{pregunta}}
+                {{pregunta.1}}
             </div>
             <div class="col-12">
-                <p>{{pregunta.2}}</p>
 
-                {% if pregunta.2 == 'no' %}
-                    <input type="checkbox" id = '{{pregunta.0}}' name = '{{pregunta.0}}'></input>
+                {% if pregunta.2 == '0' %}
+                    <input type="radio" id = '{{pregunta.0}}' name = '{{pregunta.0}}' value = '0'></input>
+                    <label for="0">Si</label><br>
+                    <input type="radio" id = '{{pregunta.0}}' name = '{{pregunta.0}}' value = '1'></input>
+                    <label for="1">No</label><br>
+
+                {% elif pregunta.2 == '2' %}
+                    <input type="radio" id = '{{pregunta.0}}' name = '{{pregunta.0}}' value = '0'></input>
+                    <label for="0">Ducha</label><br>
+                    <input type="radio" id = '{{pregunta.0}}' name = '{{pregunta.0}}' value = '1'></input>
+                    <label for="1">Baño</label><br>
                 {% else %}
                     <input type="number" id = '{{pregunta.0}}' name = '{{pregunta.0}}'></input>
                 {% endif %}

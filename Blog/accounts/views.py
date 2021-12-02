@@ -9,7 +9,7 @@ from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, UserEditForm
-from .tokens import account_activation_token
+from .token import account_activation_token
 
 
 @login_required

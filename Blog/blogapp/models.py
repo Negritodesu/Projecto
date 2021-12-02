@@ -34,3 +34,8 @@ class Post (models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Respuesta_usuario(models.Model):
+    usuario = models.OneToOneField(User, on_delete = models.CASCADE, primary_key= True)
+    respuesta = models.CharField(max_length=200)

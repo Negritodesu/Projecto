@@ -1,2 +1,5 @@
-Cuanta agua,no
-Mucha agua,si
+¿Dejas el agua de la llave corriendo cuando lavas la losa?,0,0
+¿Dejas el agua de la llave corriendo cuando te lavas los dientes?,0,0
+¿Riegas las plantas con manguera?,0,0
+¿Te duchas o te bañas?,2,0
+¿Cuanto tiempo estas en la ducha?,1,15

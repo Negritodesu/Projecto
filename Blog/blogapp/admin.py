@@ -6,3 +6,5 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display = ('title','status', 'slug', 'author')
 
 admin.site.register(models.Post, AuthorAdmin)
+
+admin.site.register(models.Respuesta_usuario)
