@@ -65,7 +65,9 @@
                                     value="Log-in">Sign
                                     in</button>
 
-
+                                <p class="small font-weight-bold text-center pb-3">
+                                    <a href="{% url "accounts:register" %}">New to Blog? Create an account</a>
+                                </p>
 
                                 <hr class="mb-3">
                                 <p class="small text-center">By signing in to your account, you agree to Blog <a
@@ -82,7 +84,9 @@
                             <p class="small text-center pt-4">
                                 <a href="{% url "password_reset" %}">Forgotten Password?</a>
                             </p>
-
+                            <p class="small text-center">
+                                <a href="{% url "accounts:register" %}">Help Center?</a>
+                            </p>
                         </div>
                     </div>
                 </div>

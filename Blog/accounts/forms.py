@@ -7,13 +7,6 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, Pas
 # https://docs.djangoproject.com/en/3.0/topics/forms/
 
 
-class PwdResetConfirmForm(SetPasswordForm):
-    new_password1 = forms.CharField(
-        label='New password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-newpass'}))
-    new_password2 = forms.CharField(
-        label='Repeat password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-new-pass2'}))
 
 
 class UserLoginForm(AuthenticationForm):
@@ -22,38 +15,15 @@ class UserLoginForm(AuthenticationForm):
         attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'login-username'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
-            'class': 'form-control',
+            'class': 'form-control mb-8',
             'placeholder': 'Password',
             'id': 'login-pwd',
         }
     ))
 
 
-class PwdChangeForm(PasswordChangeForm):
-
-    old_password = forms.CharField(
-        label='Old Password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'Old Password', 'id': 'form-oldpass'}))
-    new_password1 = forms.CharField(
-        label='New password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-newpass'}))
-    new_password2 = forms.CharField(
-        label='Repeat password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-new-pass2'}))
 
 
-class PwdResetForm(PasswordResetForm):
-
-    email = forms.EmailField(max_length=254, widget=forms.TextInput(
-        attrs={'class': 'form-control mb-3', 'placeholder': 'Email', 'id': 'form-email'}))
-
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        test = User.objects.filter(email=email)
-        if not test:
-            raise forms.ValidationError(
-                'Unfortunatley we can not find that email address')
-        return email
 
 
 class RegistrationForm(forms.ModelForm):
@@ -83,12 +53,7 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError('Passwords do not match.')
         return cd['password2']
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(
-                'Please use another Email, that is already taken')
-        return email
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -112,22 +77,13 @@ class UserEditForm(forms.ModelForm):
         label='Lastname', min_length=4, max_length=50, widget=forms.TextInput(
             attrs={'class': 'form-control mb-3', 'placeholder': 'Lastname', 'id': 'form-lastname'}))
 
-    email = forms.EmailField(
-        max_length=200, widget=forms.TextInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'Old Password', 'id': 'form-email'}))
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name')
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(
-                'Please use another Email, that is already taken')
-        return email
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['last_name'].required = False
-        self.fields['email'].required = False
+
