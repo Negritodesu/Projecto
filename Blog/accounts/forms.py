@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
+from django.contrib.auth.forms import AuthenticationForm
 
 # https://docs.djangoproject.com/en/3.0/topics/auth/default/
 # https://docs.djangoproject.com/en/3.0/topics/forms/
@@ -12,7 +12,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, Pas
 class UserLoginForm(AuthenticationForm):
 
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'login-username'}))
+        attrs={'class': 'form-control mb-3', 'placeholder': 'Usuario', 'id': 'login-username'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
             'class': 'form-control mb-8',
@@ -29,12 +29,10 @@ class UserLoginForm(AuthenticationForm):
 class RegistrationForm(forms.ModelForm):
 
     username = forms.CharField(
-        label='Enter Username', min_length=4, max_length=50, help_text='Required')
-    email = forms.EmailField(max_length=100, help_text='Required', error_messages={
-        'required': 'Sorry, you will need an email'})
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+        label='Ingresar usuario', min_length=4, max_length=50)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput, min_length=8, max_length=16)
     password2 = forms.CharField(
-        label='Repeat password', widget=forms.PasswordInput)
+        label='Repetir contraseña', widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -44,13 +42,13 @@ class RegistrationForm(forms.ModelForm):
         username = self.cleaned_data['username'].lower()
         r = User.objects.filter(username=username)
         if r.count():
-            raise ValidationError("Username already exists")
+            raise ValidationError("Este nombre de usuario ya existe.")
         return username
 
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
-            raise forms.ValidationError('Passwords do not match.')
+            raise forms.ValidationError('Las contraseñas no coinciden.')
         return cd['password2']
 
 
@@ -58,13 +56,13 @@ class RegistrationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update(
-            {'class': 'form-control mb-3', 'placeholder': 'Username'})
+            {'class': 'form-control mb-3', 'placeholder': 'Usuario'})
         self.fields['email'].widget.attrs.update(
             {'class': 'form-control mb-3', 'placeholder': 'E-mail', 'name': 'email', 'id': 'id_email'})
         self.fields['password'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Password'})
         self.fields['password2'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'Repeat Password'})
+            {'class': 'form-control', 'placeholder': 'Repetir Password'})
 
 
 class UserEditForm(forms.ModelForm):

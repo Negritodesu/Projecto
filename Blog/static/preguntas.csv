@@ -1,5 +1,15 @@
-¿Dejas el agua de la llave corriendo cuando lavas la losa?,0,0
-¿Dejas el agua de la llave corriendo cuando te lavas los dientes?,0,0
-¿Riegas las plantas con manguera?,0,0
-¿Te duchas o te bañas?,2,0
-¿Cuanto tiempo estas en la ducha?,1,15
+¿Dejas el agua de la llave corriendo cuando lavas la losa?-0-0
+¿Dejas el agua de la llave corriendo cuando te lavas los dientes?-0-0
+¿Riegas las plantas con manguera?-0-0
+¿Te duchas o te bañas?-2-0
+¿Si te duchas, cuanto tiempo te demoras en tomar una ducha (min)?-1-10
+¿Cuánta veces consumes carne a la semana?-1-2
+¿Reciclas los productos que ya has usado, como papel o plástico?-3-0
+¿Ocupas bombillas LED o de bajo consumo en tu casa?-3-0
+¿Utilizas un automóvil propio para viajar?-0-0
+¿Ocupas estufas a leña?-0-0
+¿Ocupas bolsas de plástico cuando vas a comprar?-0-0
+¿Ocupas tazas, botellas, o bombillas reutilizables?-3-0
+¿Compras productos locales o de temporada?-4-0
+¿Desconectas los aparatos electrónicos en tu casa cuando no los estás ocupando?-3-0
+¿Donas los electrodomésticos que ya no utilizas?-3-0

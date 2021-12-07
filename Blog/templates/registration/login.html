@@ -47,11 +47,11 @@
                             <form class="account-form p-4 rounded" action="{% url 'login' %}" method="post">
 
                                 {% csrf_token %}
-                                <p class="h4 mb-4 font-weight-bold">Sign In</p>
+                                <p class="h4 mb-4 font-weight-bold">Inicio de sesión</p>
 
                                 {% if form.errors %}
                                 <div class="alert alert-primary" role="alert">
-                                    Error: Username or Password not correct!
+                                    Error: ¡Usuario o contraseña incorrecta!
                                 </div>
                                 {% endif %}
 
@@ -62,31 +62,13 @@
                                 {{ form.password}}
 
                                 <button class="btn btn-dark btn-block py-2 mb-4 mt-5 font-weight-bold" type="submit"
-                                    value="Log-in">Sign
-                                    in</button>
+                                    value="Log-in">Iniciar sesión
+                                    </button>
 
                                 <p class="small font-weight-bold text-center pb-3">
-                                    <a href="{% url "accounts:register" %}">New to Blog? Create an account</a>
-                                </p>
-
-                                <hr class="mb-3">
-                                <p class="small text-center">By signing in to your account, you agree to Blog <a
-                                        href="">Terms of
-                                        Service</a> and
-                                    consent to
-                                    our <a href="">Cookie Policy</a> and <a href="">Privacy Policy</a>. This site is not
-                                    protected
-                                    by reCAPTCHA and
-                                    is a demonstration website
-                                    for learning purposes only.
+                                    <a href="{% url "accounts:register" %}">¿Nuevo usuario? Crea una cuenta</a>
                                 </p>
                             </form>
-                            <p class="small text-center pt-4">
-                                <a href="{% url "password_reset" %}">Forgotten Password?</a>
-                            </p>
-                            <p class="small text-center">
-                                <a href="{% url "accounts:register" %}">Help Center?</a>
-                            </p>
                         </div>
                     </div>
                 </div>

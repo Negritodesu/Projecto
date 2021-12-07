@@ -1,22 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_text
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.template.loader import render_to_string
-from django.conf import settings
-from django.contrib.auth import login
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, UserEditForm
-from .tokens import account_activation_token
+
 
 
 @login_required
 def profile(request):
-    return render(request,
-                  'accounts/profile.html',
-                  {'section': 'profile'})
+    return redirect('/')
 
 
 @login_required
@@ -54,24 +45,9 @@ def accounts_register(request):
             user.set_password(registerForm.cleaned_data['password'])
             user.is_active = True
             user.save()
-            current_site = get_current_site(request)
-            subject = 'Activate your Account'
-            return HttpResponse('registered succesfully and activation sent')
+            return redirect('/account/login/')
     else:
         registerForm = RegistrationForm()
     return render(request, 'registration/register.html', {'form': registerForm})
 
 
-def activate(request, uidb64, token):
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user)
-        return redirect('login')
-    else:
-        return render(request, 'registration/activation_invalid.html')

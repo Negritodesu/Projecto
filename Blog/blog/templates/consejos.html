@@ -1,0 +1,68 @@
+{% extends "base/base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+
+<style>
+   *{
+margin:0;
+padding:0;
+}
+  #columna1 {
+  position:absolute;
+  top:200px;
+  left:100px;
+  width:200px;
+  margin-top:10px;
+  background-color:#ffff55;
+  }
+  #columna2 {
+  margin-left:700px;
+  margin-top:40px;
+  background-color:#ffffff;
+  }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Blog</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000">Home</a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<p></p>
+
+
+
+
+<H1 align="center">Consejos ヽ(ヅ)ノ </H1>
+<p></p>
+
+<h2 align="left">{{consejo.1.0}}</h2>
+
+
+
+<div id="columna1">
+  <img src = '../../media/{{consejo.0}}.png' style= "width:400px;height:300px;"></div>
+</div>
+
+<div id="columna2">
+  <div class="container-fluid px-5">
+    <div class="row gx-5">
+      <div class="col-5 p-6 border border-info bg-white">
+        {{consejo.1.1}}
+      </div>
+    </div>
+  </div>
+  </div>
+{% endblock %}
