@@ -83,7 +83,16 @@ def cuestionario(request):
         lista = respuesta_usuario.respuesta.strip().split(',')
 
         for i, pregunta, tipo, cantidad in l:
-            if tipo == '0' or tipo == 2:      
+            if tipo == '0' or tipo == "2" or tipo == '4':      
+                if request.POST.get(str(i)) == '1':
+                    n = int(lista[i])
+                    n += 1
+                    lista[i] = str(n)
+                elif request.POST.get(str(i)) == '0':
+                    n = int(lista[i])
+                    n -= 1
+                    lista[i] = str(n)
+            if tipo == '3':
                 if request.POST.get(str(i)) == '0':
                     n = int(lista[i])
                     n += 1
@@ -93,11 +102,14 @@ def cuestionario(request):
                     n -= 1
                     lista[i] = str(n)
             elif tipo == '1':
-                if request.POST.get(str(i)) > cantidad:
+                if request.POST.get(str(i)) == '':
+                    n = int(lista[i])
+                    n += 1
+                elif int(request.POST.get(str(i))) > int(cantidad):
                     n = int(lista[i])
                     n -= 1
                     lista[i] = str(n) 
-                else:
+                elif int(request.POST.get(str(i))) <= int(cantidad) :
                     n = int(lista[i])
                     n += 1
                     lista[i] = str(n)

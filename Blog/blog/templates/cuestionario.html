@@ -124,10 +124,10 @@ button {
                     <label for="1">Baño</label><br>
                     <p></p>
                 {% elif pregunta.2 == '3' %}  
-                    <input type="radio" id = '{{pregunta.0}}' name = '{{pregunta.0}}' value = '1'></input>
-                    <label for="1">Si</label><br>
                     <input type="radio" id = '{{pregunta.0}}' name = '{{pregunta.0}}' value = '0'></input>
-                    <label for="0">No</label><br>
+                    <label for="0">Si</label><br>
+                    <input type="radio" id = '{{pregunta.0}}' name = '{{pregunta.0}}' value = '1'></input>
+                    <label for="1">No</label><br>
                     <p></p>    
                 {% elif pregunta.2 == '4' %}
                     <input type="radio" id = '{{pregunta.0}}' name = '{{pregunta.0}}' value = '0'></input>
