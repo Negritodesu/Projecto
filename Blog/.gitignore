@@ -4,7 +4,7 @@ venv/
 env/
 *.sqlite3
 .idea/
-# Project asset folders
+# Project asset folders a
 media/
 # Database
 db.sqlite3
